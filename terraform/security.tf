@@ -2,7 +2,8 @@
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_security_group
 
 resource "azurerm_network_security_group" "aztSecGroup" {
-    name                = "sshtraffic"
+    name                = "secgrp-${var.vms[count.index]}" #var.vms : lista de vm definidos en vars.tf
+    count               = length(var.vms)
     location            = azurerm_resource_group.aztrg.location
     resource_group_name = azurerm_resource_group.aztrg.name
 
@@ -27,6 +28,7 @@ resource "azurerm_network_security_group" "aztSecGroup" {
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_interface_security_group_association
 
 resource "azurerm_network_interface_security_group_association" "aztSecGroupAssociation1" {
-    network_interface_id      = azurerm_network_interface.aztestNic1.id
-    network_security_group_id = azurerm_network_security_group.aztSecGroup.id
+    count                     = length(var.vms)
+    network_interface_id      = azurerm_network_interface.aztestNic[count.index].id
+    network_security_group_id = azurerm_network_security_group.aztSecGroup[count.index].id
 }

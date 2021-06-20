@@ -10,8 +10,8 @@ variable "envs" {
 	default = ["dev", "pre"]
 }
 
-variable "vmachines" {
+variable "vms" { #listado de maquinas virtuales a generar
 	type = list(string)
 	description = "Máquinas Virtuales"
-	default = ["nfs", "master", "worker1", "worker2"]
+	default = ["master", "worker01", "worker02", "nfs"]
 }
