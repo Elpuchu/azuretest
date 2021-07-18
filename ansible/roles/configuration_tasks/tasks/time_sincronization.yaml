@@ -1,0 +1,31 @@
+---
+
+- name: Run timedatectl status
+  command: /usr/bin/timedatectl status
+  changed_when: False
+  check_mode: no
+  register: timedatectl_response
+
+- name: View timedatectl status
+  debug:
+    var: timedatectl_response.stdout
+
+- name: Set timezone
+  timezone:
+    name: Europe/Madrid
+  when: "'Europe/Madrid' not in timedatectl_response.stdout"
+
+- name: Install Chrony
+  package:
+    name: 'chrony'
+    state: 'present'
+
+- name: Enabled and Start Service Chrony
+  service:
+    name: 'chronyd'
+    enabled: yes
+    state: started
+
+- name: Enable ntp
+  command: /usr/bin/timedatectl set-ntp true
+  when: "'Network time on: no' in timedatectl_response.stdout"

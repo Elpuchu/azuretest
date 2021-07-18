@@ -1,0 +1,10 @@
+ip_master : "192.168.1.14"
+ip_worker1: "192.168.1.13"
+
+pod_network_cidr: "192.169.0.0/16"
+
+workers_rich_rule: 
+ - 'rule family=ipv4 source address=192.168.1.13/32 accept'
+
+kube_workers_rich_rule: 
+ - 'rule family=ipv4 source address=172.17.0.1/16 accept'

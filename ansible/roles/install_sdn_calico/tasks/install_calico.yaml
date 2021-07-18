@@ -1,0 +1,12 @@
+---
+- name: Copy archivo custom-resources.yaml
+  template: 
+    src: custom-resources.yaml.j2 
+    dest: /tmp/custom-resources.yaml
+    owner: root 
+    group: root
+
+- name: Install calico
+  command: kubectl apply -f /tmp/custom-resources.yaml
+  run_once: yes
+

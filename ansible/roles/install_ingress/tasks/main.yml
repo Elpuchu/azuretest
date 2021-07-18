@@ -1,0 +1,9 @@
+---
+- name: Check if ingress controller is Active
+  shell: "kubectl get ns haproxy-controller -o json | jq .status.phase -r"
+  register: ingress_check
+
+- name: Install ingress controller
+  command: kubectl apply -f https://raw.githubusercontent.com/haproxytech/kubernetes-ingress/v1.5/deploy/haproxy-ingress.yaml
+  run_once: yes
+  when: ingress_check.stdout != "Active"

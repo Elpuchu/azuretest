@@ -1,0 +1,16 @@
+---
+- name: export KUBECONFIG
+  shell: "export KUBECONFIG=/etc/kubernetes/admin.conf"
+
+- name: Make directory .kube
+  command: 
+    cmd: "mkdir -p $HOME/.kube"
+    warn: no
+
+- name: Copy admin.conf"
+  command: "cp -i /etc/kubernetes/admin.conf $HOME/.kube/config"
+
+- name: "Config directory .kube"
+  shell: 
+     cmd: "chown $(id -u):$(id -g) $HOME/.kube/config"
+     warn: no

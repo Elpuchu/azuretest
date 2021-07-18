@@ -1,0 +1,17 @@
+---
+- name: Open ports
+  firewalld:
+    zone: public
+    permanent: yes
+    state: enabled
+    immediate: yes
+    port: "{{ item }}"
+  loop:
+    - 10250/tcp
+    - 30000-32767/tcp
+
+- name: Reload firewall
+  command: firewall-cmd --reload
+
+#- name: Reset node
+#  command: kubeadm reset --force

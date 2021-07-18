@@ -1,0 +1,7 @@
+---
+- include_tasks: firewall.yaml
+- include_tasks: kubeadm_config.yaml
+- include_tasks: let_access_workers.yaml
+- include_tasks: init_cluster.yaml
+- include_tasks: save_token.yaml
+- include_tasks: final_config.yaml

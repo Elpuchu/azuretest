@@ -1,0 +1,12 @@
+---
+- name: Check if Tigera is installed
+  shell: "kubectl get ns tigera-operator -o json | jq .status.phase -r"
+  register: tigera_check
+
+- debug:
+    var: tigera_check.stdout
+
+- name: Install Tigera
+  command: kubectl create -f https://docs.projectcalico.org/manifests/tigera-operator.yaml
+  run_once: yes
+  when: tigera_check.stdout != "Active"

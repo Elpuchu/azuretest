@@ -1,0 +1,6 @@
+---
+- name: Enabled nfs-server
+  shell: systemctl enable nfs-server
+
+- name: Start nfs-server
+  shell: systemctl start nfs-server

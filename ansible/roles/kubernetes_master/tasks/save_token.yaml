@@ -1,0 +1,10 @@
+- name: Generate token
+  shell: kubeadm token create --print-join-command
+  register: k8_join_token
+
+- name: Print token
+  debug:
+     var: k8_join_token.stdout
+
+- name: Save token
+  local_action: copy content="{{ k8_join_token.stdout_lines[0] }}" dest="/tmp/k8_join_token" mode=0777

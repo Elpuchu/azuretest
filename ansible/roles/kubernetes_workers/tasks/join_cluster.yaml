@@ -1,0 +1,8 @@
+- name: Copy join token
+  copy:
+    src: /tmp/k8_join_token
+    dest: /tmp/k8_join_token
+    mode: 0777
+
+- name: Join workers to cluster
+  command: sh /tmp/k8_join_token
