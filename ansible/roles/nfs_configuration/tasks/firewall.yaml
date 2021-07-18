@@ -1,3 +1,9 @@
+- name: 'Restarting firewalld'
+  systemd:
+    name: firewalld
+    state: restarted
+    enabled: true
+    daemon_reload: true
 - name: Open ports
   firewalld:
     service: "{{ item }}"
