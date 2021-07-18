@@ -13,7 +13,7 @@ workers_rich_rule:
  - si se agregan mas workers agregar rules aqui para esas ips
 
 
-#En las VMs
+# En las VMs
 * Habilitar autenticacion ssh con password
 sudo nano /etc/ssh/sshd_config
 
