@@ -13,6 +13,3 @@
     - 10251/tcp
     - 10252/tcp
     - 10255/tcp
- 
-- name: Reload firewall
-  command: firewall-cmd --reload

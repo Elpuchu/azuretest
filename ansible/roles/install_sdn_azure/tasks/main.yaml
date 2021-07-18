@@ -1,0 +1,17 @@
+---
+- name: open ports
+  firewalld:
+    zone: public
+    permanent: yes
+    state: enabled
+    immediate: yes
+    port: "{{ item }}"
+  loop:
+    - 8285/udp
+    - 8472/udp
+
+- name: Reload firewall
+  command: firewall-cmd --reload
+
+- name: Install flannel
+  command: kubectl apply -f https://docs.projectcalico.org/manifests/canal.yaml

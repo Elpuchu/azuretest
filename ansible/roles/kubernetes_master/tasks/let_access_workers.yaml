@@ -7,6 +7,9 @@
     rich_rule: "{{ item }}"
   with_items: "{{ workers_rich_rule }}"
 
+- name: Reload firewall
+  command: firewall-cmd --reload
+
 - name: Let localhost access to workers
   firewalld:
     permanent: yes

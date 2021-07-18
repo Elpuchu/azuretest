@@ -27,6 +27,7 @@
   roles:
     - kubernetes_master
 
+#comentar install calico cuando se despliega en azure
 - name: install SDN (calico)
   hosts: master
   gather_facts: false
@@ -34,23 +35,31 @@
   roles:
      - install_sdn_calico
 
-#- name: Kubernetes - Workers
-#  hosts: workers
+#descomentar install flannel cuando se despliega en azure
+#- name: install SDN (flannel)
+#  host: master
 #  gather_facts: false
 #  become: true
 #  roles:
-#    - kubernetes_workers
+#     - install_sdn_azure
 
-#- name: Install ingress controller
-#  hosts: master
-#  gather_facts: false
-#  become: true
-#  roles:
-#     - install_ingress
+- name: Kubernetes - Workers
+  hosts: workers
+  gather_facts: false
+  become: true
+  roles:
+    - kubernetes_workers
 
-#- name: Creando user in master
-#  hosts: master
-#  gather_facts: false
-#  become: true
-#  roles:
-#     - master_create_users
+- name: Install ingress controller
+  hosts: master
+  gather_facts: false
+  become: true
+  roles:
+     - install_ingress
+
+- name: Creando user in master
+  hosts: master
+  gather_facts: false
+  become: true
+  roles:
+     - master_create_users
