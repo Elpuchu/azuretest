@@ -3,3 +3,7 @@
   dnf:
     name: ['nfs-utils', 'nfs4-acl-tools', 'wget']
     state: latest
+- name: install jq
+  command: 
+    cmd: "yum install jq -y"
+    warn: no
