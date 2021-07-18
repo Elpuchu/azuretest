@@ -1,0 +1,13 @@
+- name: Open ports
+  firewalld:
+    service: "{{ item }}"
+    permanent: yes
+    state: enabled
+    immediate: yes
+  loop:
+    - nfs
+    - rpc-bind
+    - mountd
+
+- name: Reload firewall
+  command: firewall-cmd --reload

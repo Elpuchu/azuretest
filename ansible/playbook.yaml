@@ -12,3 +12,17 @@
   become: true
   roles:
     - configuration_tasks
+
+- name: Install NFS server
+  hosts: nfs
+  gather_facts: false
+  become: true
+  roles:
+    - nfs_configuration
+
+- name: Kubernetes - Common configuration
+  hosts: all
+  gather_facts: false
+  become: true
+  roles:
+    - kubernetes_config

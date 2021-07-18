@@ -1,0 +1,5 @@
+---
+- name: Disable swap
+  shell: swapoff -a
+- name: Remove swap config         
+  shell: sed -i '/swap/d' /etc/fstab
