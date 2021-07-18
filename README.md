@@ -11,3 +11,14 @@ ip_worker1: "192.168.1.13"
 workers_rich_rule: 
  - 'rule family=ipv4 source address=192.168.1.13/32 accept'
  - si se agregan mas workers agregar rules aqui para esas ips
+
+
+#En las VMs
+* Habilitar autenticacion ssh con password
+sudo nano /etc/ssh/sshd_config
+
+PasswordAuthentication yes
+ChallengeResponseAuthentication no
+
+* y reiniciamos
+sudo systemctl restart sshd
