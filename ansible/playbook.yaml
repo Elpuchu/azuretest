@@ -1,11 +1,4 @@
 ---
-#- name: Create users in master
-#  hosts: master
-#  gather_facts: false
-#  become: true
-#  roles:
-#     - master_create_users
-
 - name: Configuration previous tasks
   hosts: all
   gather_facts: false
@@ -33,3 +26,31 @@
   become: true
   roles:
     - kubernetes_master
+
+- name: install SDN (calico)
+  hosts: master
+  gather_facts: false
+  become: true
+  roles:
+     - install_sdn_calico
+
+#- name: Kubernetes - Workers
+#  hosts: workers
+#  gather_facts: false
+#  become: true
+#  roles:
+#    - kubernetes_workers
+
+#- name: Install ingress controller
+#  hosts: master
+#  gather_facts: false
+#  become: true
+#  roles:
+#     - install_ingress
+
+#- name: Creando user in master
+#  hosts: master
+#  gather_facts: false
+#  become: true
+#  roles:
+#     - master_create_users

@@ -10,4 +10,3 @@
      chdir: $HOME
      creates: cluster_initialized.txt
   when: not kubecakey.stat.exists
-  run_once: yes
