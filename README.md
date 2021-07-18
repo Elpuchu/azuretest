@@ -13,6 +13,7 @@ ip_worker1: "192.168.1.13"
  - si se agregan mas workers agregar rules aqui para esas ips
 
 3. En ansible/roles/nfs_configuration/templates/exports.j2,agregar tantos workers como se agregaron en paso (1)
+
 /srv/nfs	{{ ip_master }}(rw,sync)
 /srv/nfs	{{ ip_worker1 }}(rw,sync)
 /srv/nfs    {{ ip_worker2 }}(rw,sync)
