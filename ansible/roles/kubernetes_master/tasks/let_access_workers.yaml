@@ -1,0 +1,19 @@
+---
+- name: Let workers access
+  firewalld:
+    permanent: yes
+    immediate: yes
+    state: enabled
+    rich_rule: "{{ item }}"
+  with_items: "{{ workers_rich_rule }}"
+
+- name: Let localhost access to workers
+  firewalld:
+    permanent: yes
+    immediate: yes
+    state: enabled
+    rich_rule: "{{ item }}"
+  with_items: "{{ kube_workers_rich_rule }}"
+
+- name: Reload firewall
+  command: firewall-cmd --reload

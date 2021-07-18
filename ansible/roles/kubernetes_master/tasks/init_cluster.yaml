@@ -1,0 +1,13 @@
+---
+- name: Check kubeadm status
+  stat:
+    path: /etc/kubernetes/pki/ca.key
+  register: kubecakey
+
+- name: Init kluster
+  shell: kubeadm init --pod-network-cidr {{ pod_network_cidr }} --ignore-preflight-errors=NumCPU --ignore-preflight-errors=Mem
+  args:
+     chdir: $HOME
+     creates: cluster_initialized.txt
+  when: not kubecakey.stat.exists
+  run_once: yes

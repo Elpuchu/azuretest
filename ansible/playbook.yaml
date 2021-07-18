@@ -26,3 +26,10 @@
   become: true
   roles:
     - kubernetes_config
+
+- name: Kubernetes - Master
+  hosts: master
+  gather_facts: false
+  become: true
+  roles:
+    - kubernetes_master
