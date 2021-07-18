@@ -1,0 +1,5 @@
+---
+- name: install nfs-utils nfs4-acl-tools wget
+  dnf:
+    name: ['nfs-utils', 'nfs4-acl-tools', 'wget']
+    state: latest

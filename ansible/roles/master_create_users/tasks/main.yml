@@ -1,0 +1,28 @@
+
+---
+- name: Crear usuario para gestion de cluster
+  user:
+    name: kubeadmin
+    create_home: yes
+    home: /home/kubeadmin
+    password: ansible
+
+- name: Crear directorio .kube
+  command: 
+    cmd: mkdir -p /home/kubeadmin/.kube
+    warn: no
+
+- name: Copiar configuracion
+  shell: cp -i /etc/kubernetes/admin.conf /home/kubeadmin/.kube/config
+
+- name: Chown kubeadmin
+  command: 
+    cmd: chown kubeadmin. /home/kubeadmin/.kube/config
+    warn: no
+
+- name: Agregar a sudoers
+  blockinfile:
+    create: yes
+    path: "/etc/sudoers.d/kubeadmin"
+    block: |
+           ALL          ALL = (ALL) NOPASSWD: ALL

@@ -1,0 +1,6 @@
+---
+
+- include_tasks: update_packages.yaml
+- include_tasks: time_sincronization.yaml
+- include_tasks: disable_selinux.yaml
+- include_tasks: install_some_packages.yaml

@@ -1,0 +1,7 @@
+---
+
+- name: Update packages to latest
+  yum:
+   name: '*'
+   state: latest
+   skip_broken: yes

@@ -1,0 +1,14 @@
+---
+#- name: Create users in master
+#  hosts: master
+#  gather_facts: false
+#  become: true
+#  roles:
+#     - master_create_users
+
+- name: Configuration previous tasks
+  hosts: all
+  gather_facts: false
+  become: true
+  roles:
+    - configuration_tasks

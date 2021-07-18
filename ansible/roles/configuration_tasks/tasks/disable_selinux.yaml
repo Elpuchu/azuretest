@@ -1,0 +1,9 @@
+---
+- name: Disabled SELinux
+  selinux:
+    state: disabled
+
+- name: Set SELinux in permisive mode
+  command: setenforce 0
+  ignore_errors: true
+  changed_when: false
