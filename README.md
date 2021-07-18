@@ -26,6 +26,7 @@ ip_worker1: "192.168.1.13"
 sudo nano /etc/ssh/sshd_config
 
 PasswordAuthentication yes
+
 ChallengeResponseAuthentication no
 
 * y reiniciamos
